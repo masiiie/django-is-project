@@ -1,0 +1,503 @@
+{% extends "inmobiliaria/base2.html" %} {% block carousel %}
+<div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+
+        <div class="item active" style="background-image: url(media/{{ img.img1 }})">
+            <div class="caption">
+                <h1 class="animated fadeInLeftBig">Bienvenido {% if user.is_authenticated %} {{user.name}} {% endif %}</h1>
+                <p class="animated fadeInRightBig"></p>
+                <a data-scroll class="btn btn-start animated fadeInUpBig" href="#services">Iniciar</a>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(media/{{ img.img2 }})">
+            <div class="caption">
+                <h1 class="animated fadeInLeftBig">Bienvenido {% if user.is_authenticated %} {{user.name}} {% endif %}</h1>
+                <p class="animated fadeInRightBig"></p>
+                <a data-scroll class="btn btn-start animated fadeInUpBig" href="#services">Iniciar</a>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(media/{{ img.img3 }})">
+            <div class="caption">
+                <h1 class="animated fadeInLeftBig">Bienvenido {% if user.is_authenticated %} {{user.name}} {% endif %}</h1>
+                <p class="animated fadeInRightBig"></p>
+                <a data-scroll class="btn btn-start animated fadeInUpBig" href="#services">Iniciar</a>
+            </div>
+        </div>
+
+    </div>
+    <a class="left-control" href="#home-slider" data-slide="prev">
+        <i class="fa fa-angle-left"></i>
+    </a>
+    <a class="right-control" href="#home-slider" data-slide="next">
+        <i class="fa fa-angle-right"></i>
+    </a>
+
+    <a id="tohash" href="#services">
+        <i class="fa fa-angle-down"></i>
+    </a>
+
+</div>
+
+{% endblock carousel %} {% block navbar %}
+<div class="main-nav">
+    {% endblock navbar %} {% block content %}
+
+
+    <!--/#home-->
+    <section id="services">
+        <div class="container">
+
+            <div class="text-center our-services">
+                <div class="row">
+                    <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <a href="/pubs/rents">
+                            <div class="service-icon">
+                                <i class="fa fa-hotel"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>Alquileres</h3>
+                                <p>Ponemos a tu disposición una amplia gama de inmuebles, distribuidos por todo el país, facilitando todos los trámites de alquiler. </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="450ms">
+                        <a href="/map">
+                            <div class="service-icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>Mapa</h3>
+                                <p>Consulta la ubicación del inmueble de tu preferencia o busca de acuerdo a los sitios de interés de la ciudad.</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
+                        <a href="/pubs/sells">
+                            <div class="service-icon">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="service-info">
+                                <h3>Ventas</h3>
+                                <p>Ponemos a tu disposición una amplia gama de inmuebles, distribuidos por todo el país, facilitando todos los trámites de venta.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#services-->
+    <section id="about-us" style=" background-image: url(media/{{ img.about }})" class="parallax">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="about-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <h2>Acerca de</h2>
+                        <p>Nuestra empresa inmobiliria es la mejor bla bla bla bla...</p>
+                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis
+                            unde omnis iste. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="our-skills wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        {% for item in stats %}
+                        <div class="single-skill wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                            <p class="lead">{{ item|last }}</p>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-primary six-sec-ease-in-out" role="progressbar" aria-valuetransitiongoal="{{ item|first }}">{{ item|first }}%</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#about-us-->
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="heading text-center col-sm-12 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <h2>Sugerencias</h2>
+                    <p>Top-6 de las mejores ofertas de nuestro sitio</p>
+                    {% for item in top %}
+                    <div class="col-md-4 col-sm-12" style="margin-bottom: 20px">
+                        <a href="/pubs/places/{{item.id}}" style="text-decoration-style: none; color: black">
+                            <img src="/media/{{ item.foto1 }}" height="320" width="320" class="img-rounded" >
+                             
+                        </a>
+
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/1.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="400ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/2.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="500ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/3.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="600ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/4.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="700ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/5.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="800ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/6.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="900ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/7.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="folio-item wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="1000ms">
+                        <div class="folio-image">
+                            <img class="img-responsive" src="images/portfolio/8.jpg" alt="">
+                        </div>
+                        <div class="overlay">
+                            <div class="overlay-content">
+                                <div class="overlay-text">
+                                    <div class="folio-info">
+                                        <h3>Time Hours</h3>
+                                        <p>Design, Photography</p>
+                                    </div>
+                                    <div class="folio-overview">
+                                        <span class="folio-link">
+                                            <a href="casaventa.html">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </span>
+                                        <span class="folio-expand">
+                                            <a href="mapa.html">
+                                                <i class="fa fa-map-marker"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="portfolio-single-wrap">
+            <div id="portfolio-single">
+            </div>
+        </div>
+        <!-- /#portfolio-single-wrap -->
+    </section>
+    <!--/#portfolio-->
+
+
+
+    <section id="features" style="background-image: url(media/{{ img.features }})" class="parallax">
+        <div class="container">
+            <div class="row count">
+                <div class="col-sm-3 col-xs-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+                    <i class="fa fa-user"></i>
+                    <h3 class="timer">41000</h3>
+                    <p>Clientes Satisfechos</p>
+                </div>
+                <div class="col-sm-3 col-xs-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="500ms">
+                    <i class="fa fa-home"></i>
+                    <h3 class="timer">200</h3>
+                    <p>Total de inmuebles</p>
+                </div>
+                <div class="col-sm-3 col-xs-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="700ms">
+                    <i class="fa fa-trophy"></i>
+                    <h3 class="timer">10</h3>
+                    <p>Vendidos este mes</p>
+                </div>
+                <div class="col-sm-3 col-xs-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="900ms">
+                    <i class="fa fa-comment-o"></i>
+                    <h3 class="timer">241</h3>
+                    <p>Alquilados este mes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#features-->
+
+    {% if user.is_authenticated %}
+    <section id="pricing">
+        <div class="container">
+            <div class="row">
+                <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+                    <h2>Alquiler o Venta</h2>
+                    <p>Si estas considerando vender o rentar algún inmueble este es el sitio indicado, tenemos los bonos mas baratos del mercado</p>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="text-center our-services">
+                    <div class="row">
+                        <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+                            <a href="/gestalquiler">
+                                <div class="service-icon">
+                                    <i class="fa fa-euro"></i>
+                                </div>
+                            </a>
+                            <div class="service-info">
+                                <h3>Alquileres</h3>
+                                <p>Poner casa en alquiler</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="450ms">
+                            <div class="service-info">
+                                <h3></h3>
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="450ms">
+                            <a href="/gestventa">
+                                <div class="service-icon">
+                                    <i class="fa fa-bitcoin"></i>
+                                </div>
+                            </a>
+                            <div class="service-info">
+                                <h3>Venta</h3>
+                                <p>Poner casa en Venta</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#pricing-->
+
+
+    {% endif %}
+
+    <section id="twitter" style=" background-image: url(media/{{ img.comment }});" class="parallax">
+        <div>
+            <a class="twitter-left-control" href="#twitter-carousel" role="button" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+            <a class="twitter-right-control" href="#twitter-carousel" role="button" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                        <div class="twitter-icon text-center">
+                            <i class="fa fa-twitter"></i>
+                            <h4>Comentarios</h4>
+                        </div>
+                        <div id="twitter-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
+                                    <p>Este es el mejor sitio de MATCOM</p>
+                                </div>
+                                <div class="item">
+                                    <p>Siempre encuentro los mejores precios</p>
+                                </div>
+                                <div class="item">
+                                    <p>Este equipo va a convalidar IS</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/#twitter-->
+
+
+
+    {% endblock content %}

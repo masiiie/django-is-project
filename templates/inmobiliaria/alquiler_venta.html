@@ -1,0 +1,80 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %}
+<section id="filter">
+</section>
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+                <h2>{{ tipo }}</h2>
+                <p>Donde podrás encontrarte con el inmueble que siempre imaginaste</p>
+            </div>
+        </div>
+        <div class="blog-posts">
+            <div class="row">
+
+                {% for casa in casas %}
+                <div class="col-sm-4 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div class="post-thumb">
+                        <div id="post-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <a href="/pubs/places/{{casa.id}}">
+                                        <img class="img-responsive" src="/media/{{ casa.foto1 }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="/pubs/places/{{casa.id}}">
+                                        <img class="img-responsive" src="/media/{{ casa.foto2 }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="/pubs/places/{{casa.id}}">
+                                        <img class="img-responsive" src="/media/{{ casa.foto3 }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="post-meta">
+                            <span>
+                                <i class="fa fa-comments-o"></i> 3 Comments</span>
+                            <span>
+                                <i class="fa fa-heart"></i> 0 Likes</span>
+                        </div>
+                        <div class="post-icon">
+                            <i class="fa fa-picture-o"></i>
+                        </div>
+                    </div>
+                    <div class="entry-header">
+                        <h3>
+                            <a href="/pubs/places/{{casa.id}}"> {{ casa }}</a>
+                        </h3>
+                        {% if casa.subastable and casa.venta_o_renta == 'Venta' %}
+                        <p><strong>Disponible para subasta</strong></p>{% else %}
+                        <p><strong>Disponible para {{casa.venta_o_renta}}</strong></p>
+                        {%endif%}
+                        <span class="date">{{ casa.ultimo_cambio }}</span>
+                    </div>
+                    <div class="entry-content">
+                        <p>{{ casa.descripcion|truncatewords:20 }} </p>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+
+
+            </div>
+            <div class="load-more wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+                <a href="#" class="btn-loadmore">
+                    <i class="fa fa-repeat"></i> Load More</a>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!--/#blog-->
+
+
+{% endblock content %}

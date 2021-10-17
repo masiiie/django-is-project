@@ -1,0 +1,33 @@
+{% extends "inmobiliaria/base2.html" %}
+{% block content %}
+<div style="z-index: 100000;top: 100px;position: relative;height: 500px;" class="container">
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div>
+            {%if message%}
+            <h6><strong>error: </strong>{{message}}</h6>{%endif%}
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <input type="text" name="user" class="form-control" placeholder="Nombre de usuario" required="required">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="password" name="pass" class="form-control" placeholder="Contraseña" required="required">
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <input type="password" name="pass2" class="form-control" placeholder="Confirmación contraseña" required="required">
+                </div>
+            </div>
+            {%if add_staff%}
+                {{form}}
+            {%endif%}
+            <button type="submit" class="btn-submit">Registrarse</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}

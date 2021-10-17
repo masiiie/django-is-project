@@ -1,0 +1,83 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %} {% load bootstrap %}
+
+<section id="blog">
+    <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <h1> Habitación #{{ cuarto.id }} </h1>
+        <h2>Descripción</h2>
+        <p> {{ casa.descripcion }} </p>
+    </div>
+
+</section>
+<!--/#blog-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <p><strong>Dirección:</strong> calle {{casa.calle_principal}} #{{casa.numero_de_vivienda}} entre {{casa.calle_secundaria}} {% if casa.tiene_calle_secundaria_opcional %} y {{casa.calle_secundaria_opcional}} {% endif %}</p>
+                <p><strong>Ubicación:</strong> {{ubicacion}}</p>
+                {% if casa.subastable %}
+                <p><strong>Disponible para subasta</strong></p>{% endif %}
+                <h6><strong>Encargado:</strong> {{casa.perito}}</h6>
+                <h6><strong>Propietario:</strong> {{casa.propietario}}</h6>
+
+                <p class="text-center"><strong>Precio:</strong> {%if casa.venta_o_renta == 'Venta'%}{{casa.precio_de_venta}}{%else%}{{casa.precio_de_alquiler}}{%endif%}</p>
+
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    <select name="accion">
+                        <option value='none' selected>----------</option>
+                        {%if perms.inmobiliaria.change_lugar %}
+                        {% if casa.chequeado == False %}<option value='validate'>Validar (incluye cuartos)</option> {% endif %}
+                        {%if casa.agente.id == user.id %}<option value='edit'>Editar</option>
+                        <option value='delete'>Eliminar (no retorno)</option>
+                        {%endif%}
+                        {%if not perms.inmobiliaria.add_lugar%}
+                        {%if not casa.subastable and casa.venta_o_renta == 'Venta'%}
+                        <option value='buy'>Solicitar compra</option>
+                        {%endif%}    
+                        {%if casa.venta_o_renta == 'Renta linear'%}
+                        <option value='rent'>Solicitar alquiler</option>
+                        {%endif%}                       
+                        {%endif%}
+                    </select>
+
+                    <div class="form-group" style="text-align: right">
+                        <button type="submit" class="btn btn-success">Ejecutar Acción</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <li>
+                {% for room in rooms %}
+                <div class="col-xs-4 col-md-4 text-center">
+                    <h4>
+                        <a href=""></a>Habitación #{{room.id}}</h4>
+                    <p><strong>Cantidad de camas:</strong> {{room.cantidad_de_camas}}</p>
+                    <p><strong>Baño compartido:</strong> {{room.banno_compartido}}</p>
+                </div>
+                {% endfor %}
+            </li>
+            {%if perms.inmobiliaria.add_cuarto%}
+            <p>
+                <a href="/staff/insert_room/{{casa.id}}"> Añadir Cuarto</a>
+            </p>
+            {%endif%}
+
+            <div class="col-xs-6 col-md-4 text-center">
+                <a data-scroll class="animated fadeInUpBig " href="#services">
+                    <div class="service-icon">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                </a>
+                <a data-scroll class="animated fadeInUpBig " href="">
+                    <div class="service-icon">
+                        <i class="fa fa-dollar"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

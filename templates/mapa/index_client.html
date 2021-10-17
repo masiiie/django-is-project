@@ -1,0 +1,40 @@
+{% extends "inmobiliaria/base2.html" %} {% load staticfiles %} {% load bootstrap %} {% block filter_places %}
+<br>
+<hr>
+<div class="row" style="color: white">
+    <div class="col-lg-4 col-xs-4 col-md-4  "></div>
+    <div class="col-lg-4 col-xs-4 col-md-4  glyphicon glyphicon-search " style="text-align: center; padding: 10px" id="a">Filtros del mapa</div>
+   
+    <div class="col-lg-4 col-xs-4 col-md-4 "></div>
+</div>
+<div style="display: none;" class="form-inline center" id="form_map">
+    {{ form0|bootstrap_inline }}
+    <br>
+    <hr> {{ form1|bootstrap_inline }}
+    <br>
+    <hr> {{ form2|bootstrap_inline }}
+    <button onclick="Add_Polygon()">Add Polygon</button>
+    <button onclick="Close_Polygon()">Cerrar</button>
+</div>
+{% endblock filter_places %} {% block content %}
+<br>
+<br>
+<br>
+<br>
+<section>
+    <div class="navbar-fixed-top">
+        <div class="row wow fadeInUp animated" data-wow-duration="1000ms" data-wow-delay="300ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 300ms; animation-name: fadeInDown;">
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col-lg-12 col-md-12 col-xs-12">
+            <main role="main" class=" col-lg-12 col-md-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-xs-12" id="mapid" style=" height: 700px; width: 100%"></div>
+            </main>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<p id="xxx"></p>
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %}
+<section id="filter">
+</section>
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+                <h1 class="header-line">Bienvenido {{ user }}</h1>
+                <h2>Vista de Empleo</h2>
+            </div>
+        </div>
+        <div class="blog-posts">
+            <div class="row">
+                {% if perms.inmobiliaria.add_lugar %}
+                <li>
+                    <p>
+                        <a href='/staff/insert_place'>Insertar Lugar</a>
+                    </p>
+                    <p>
+                        <a href='/staff/solicitudes/all'>Ver Solicitudes</a>
+                    </p>
+                </li>
+                {% endif %} {% if perms.inmobiliaria.add_user and perms.inmobiliaria.change_user %}
+                <li>
+                    <p>
+                        <a href='/staff/insert_new_user'>Insertar Usuario</a>
+                    </p>
+                </li>
+                {% endif %}{% if perms.inmobiliaria.delete_user or perms.inmobiliaria.change_user %}
+                <li>
+                    <p>
+                        <a href='/staff/users'>Ver Usuarios</a>
+                    </p>
+                </li>
+                {% endif %}{% if perms.inmobiliaria.change_lugar %}
+                <li>
+                    <p>
+                        <a href='/pubs/places/all'>Ver lugares</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href='/pubs/places/pending'>Ver lugares pendientes</a>
+                    </p>
+                </li>
+                <li>
+                    <p>
+                        <a href='/pubs/places/checked'>Ver lugares validados</a>
+                    </p>
+                </li>
+                {% endif %} {% if perms.inmobiliaria.add_cuarto %}
+                <li>
+                    <p>
+                        <a href='/staff/insert_room'>Insertar cuarto</a>
+                    </p>
+                </li>{% endif %}{% if perms.inmobiliaria.add_tag %}
+                <li>
+                    <p>
+                        <a href='/staff/insert_tag/any'>Insertar tag</a>
+                    </p>{% endif %}
+            </div>
+        </div>
+</section>
+<!--/#blog-->
+
+
+{% endblock content %}

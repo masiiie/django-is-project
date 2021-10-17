@@ -1,0 +1,119 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %}
+<section id="filter">
+</section>
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+                <h1 class="header-line">Bienvenido {{ user }}</h1>
+                <h2>Mostrando inmuebles {{ option }}</h2>
+            </div>
+        </div>
+        <div class="blog-posts">
+            <div class="row">
+
+                {% for casa in casas %}
+                <div class="col-sm-4 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div class="post-thumb">
+                        <div id="post-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <a href="#">
+                                        <img class="img-responsive" src="/media/{{ casa.foto1 }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="#">
+                                        <img class="img-responsive" src="/media/{{ casa.foto2 }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="#">
+                                        <img class="img-responsive" src="/media/{{ casa.foto3 }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="post-meta">
+                            <span>
+                                <i class="fa fa-comments-o"></i> Pendiente </span>
+                        </div>
+                        <div class="post-icon">
+                            <i class="fa fa-picture-o"></i>
+                        </div>
+                    </div>
+                    <div class="entry-header">
+                        <h3>
+                            <a href="{{casa.id}}"> {{ casa }}</a>
+                        </h3>
+                        <h4>
+                            Estado: {% if casa.chequeado %} Validado {% else %} Pendiente {% endif %}
+                        </h4>
+                        <h6>
+                            Disponible para {{ casa.venta_o_renta }}
+                        </h6>
+                        <span class="date">{{ casa.ultimo_cambio }}</span>
+                        <span class="cetagory">en
+                            <strong>{{ casa.municipio }}</strong>
+                        </span>
+                    </div>
+                    <div class="entry-content">
+                        <p>{{ casa.descripcion|truncatewords:20 }} </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="load-more wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+                <a href="#" class="btn-loadmore">
+                    <i class="fa fa-repeat"></i> Load More</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+                <h2>Mostrando solicitudes {{ sol_option }}</h2>
+            </div>
+        </div>
+        <div class="blog-posts">
+            <div class="row">
+                {% for pub in pubs %}
+                <div class="col-sm-4 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div class="entry-header">
+                        <h2>
+                            <a href="/staff/solicitudes/validate/{{pub.id}}">{{ pub }}</a>
+                        </h2>
+                        <h2>
+                            {{ pub.usuario.first_name}} {{pub.usuario.last_name}}
+                        </h2>
+                        <h4>
+                            Estado: {% if pub.casa and pub.casa.chequeado %} Publicado {% endif %} {% if not pub.casa.chequeado %} Pendiente {% endif %}
+                        </h4>
+                        <h4>
+                            Perito: {% if pub.perito %} {{pub.perito}} {% else %} No Asignado{% endif %}
+                        </h4>
+                        <h6>
+                            Solicitud para {{ pub.venta_o_renta }}
+                        </h6>
+                        <h6>
+                            hecha en {{ pub.tiempo }}
+                        </h6>
+                        <span class="cetagory">en
+                            <strong>{{ pub.municipio }}, {{pub.provincia}}</strong>
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="load-more wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+                <a href="#" class="btn-loadmore">
+                    <i class="fa fa-repeat"></i> Load More</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--/#blog-->
+
+
+{% endblock content %}

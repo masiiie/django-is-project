@@ -1,0 +1,81 @@
+<form class="form" id="filter">
+                    <div class="row" id="filter-basic">
+                        <div class="form-group col-md-2">
+                            <p>Tipo de casa: <br>
+                            <input type="checkbox" name="Casa" value="Casa" > Casa 
+                            <input type="checkbox" name="Apartamento" value="Apartamento" > Apartamento <br>
+                            </p>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <p>Tipo de localidad: <br>
+                            <input type="checkbox" name="Ciudad" value="Ciudad" > Ciudad 
+                            <input type="checkbox" name="Campo" value="Campo" > Campo <br>
+                            <input type="checkbox" name="Periferia" value="Periferia" > Periferia
+                            <input type="checkbox" name="Playa" value="Playa" > Playa
+                            </p>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <p>Provincia: <br>
+                                <select name="Provincia">
+                                    <option value="Pinar del Río">Pinar del Río</option>
+                                    <option value="Mayabeque">Mayabeque</option>
+                                    <option value="Artemisa">10 de Octubre</option>
+                                    <option value="La Habana" selected>La Habana</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <p>Municipio: <br>
+                                <select name="Municipio">
+                                    <option value="Arroyo Naranjo">Arroyo Naranjo</option>
+                                    <option value="Boyeros" selected>Boyeros</option>
+                                    <option value="Lisa">Lisa</option>
+                                    <option value="10 de Octubre">10 de Octubre</option>
+                                </select>
+                            </p>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <p>Precio: <br>
+                            Entre $<input class="precio" type="number" name="PrecioMin" min="0"> y
+                            $<input class="precio" type="number" name="PrecioMax" min="0">
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                            Numero de cuartos: <br>
+                                <input class="casa-opciones" type="number" name="cuartos" value="1" min="0" max="99">
+                            </div>
+                            <div class="col-md-4">
+                            Numero de baños: <br>
+                                <input class="casa-opciones" type="number" name="baños" value="1" min="0" max="99">
+                            </div>
+                            <div class="col-md-4">
+                            Numero de plantas: <br>
+                                <input class="casa-opciones" type="number" name="plantas" value="1" min="0" max="99">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p>Tipo de Gas:</p>
+                            <input type="checkbox" name="gas" value="gas-licuado"> Gas licuado
+                            <input type="checkbox" name="gas" value="gas-manufacturado"> Gas manufacturado
+                        </div>
+                        <div class="form-group">
+                            <p>Opciones generales: <br>
+                            <div class="checkbox-inline">
+                                <input type="checkbox" name="Piscina" value="Piscina"> Piscina
+                            </div>
+                            <div class="checkbox-inline">
+                                <input type="checkbox" name="Garaje" value="Garaje"> Garaje
+                            </div>
+                            <div class="checkbox-inline">
+                                <input type="checkbox" name="Sótano" value="Sótano"> Sótano
+                            </div>
+                            <div class="checkbox-inline">
+                                <input type="checkbox" name="Teléfono" value="Teléfono"> Teléfono <br>
+                            </div>
+                            </p>
+                        </div>
+                    </div>
+                </form>

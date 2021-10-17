@@ -1,0 +1,55 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %} {% load bootstrap %}
+
+<section id="blog">
+    <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <h1> {{ sol }}</h1>
+        <p>enviada el {{sol.tiempo}}</p>
+    </div>
+
+</section>
+<!--/#blog-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-4">
+                <p><strong>Lugar:</strong> {{sol.lugar}} </p>
+                {% if sol.lugar.subastable %}
+                <p><strong>Precio Acordado:</strong> {{sol.lugar.precio_de_subasta}} CUC </p>                
+                {% else %}
+                <p><strong>Precio Acordado:</strong> {{sol.lugar.precio_de_venta}} <strong> CUC </strong></p>                
+                {%endif%}
+
+                <h6><strong>Solicitante:</strong> {{sol.solicitante.first_name}} {{sol.solicitante.last_name}}</h6>
+                <p><strong>email:</strong>
+                    <a href="mailto:{{sol.solicitante.email}}">{{sol.solicitante.email}}</a>
+                </p>
+                <h6><strong>Propietario:</strong> {{sol.lugar.propietario.first_name}} {{sol.lugar.propietario.last_name}}</h6>
+                <p><strong>email:</strong>
+                    <a href="mailto:{{sol.lugar.propietario.email}}">{{sol.lugar.propietario.email}}</a>
+                </p>
+
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    <p><strong>Seleccione fecha para programar cita</strong></p>
+                    <input type="date" name="date" value="">
+
+                    <select name="accion">
+                        <option value=0 selected>Programar</option>
+                        {% if sol.estado != 'Pendiente'%}
+                        <option value=1>Confirmar Venta</option>
+                        {%endif%}
+                        {% if sol.lugar.subastable %}
+                        <option value=2>Descartar ganador</option>                        
+                        {% endif %}
+                    </select>
+
+                    <div class="form-group" style="text-align: right">
+                        <button type="submit" class="btn btn-success">Realizar Acción</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

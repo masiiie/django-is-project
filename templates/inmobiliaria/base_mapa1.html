@@ -1,0 +1,36 @@
+{% extends "inmobiliaria/base.html" %} {% load staticfiles %}
+
+{% block css %} 
+
+<link rel="stylesheet" href="{% static 'mapa/assets/leaflet/leaflet.css' %}">
+<link rel="stylesheet" href="{% static 'mapa/assets/leaflet/leaflet.awesome-markers.css' %}">
+<link rel="stylesheet" href="{% static 'mapa/assets/leaflet/leaflet.draw.css' %}">
+<link rel="stylesheet" href="{% static 'mapa/assets/css/reset.css' %}">
+<!-- CSS reset -->
+<link rel="stylesheet" href="{% static 'mapa/assets/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'mapa/assets/leaflet/marker-cluster/MarkerCluster.css' %}" />
+
+<link rel="stylesheet" href="{% static 'mapa/assets/leaflet/MarkerCluster.css' %}" />
+<link rel="stylesheet" href="{% static 'mapa/assets/leaflet/MarkerCluster.Default.css' %}" />
+
+{% endblock css %}
+
+{% block navbar %}
+<div style="background-color: #009acd" class="navbar-fixed-top">
+{% endblock navbar %}
+
+
+{% block js %}
+<script src="{% static 'mapa/assets/leaflet/leaflet.js' %}"></script>
+<script src="{% static 'mapa/assets/leaflet/leaflet.awesome-markers.js' %}"></script>
+<script src="{% static 'mapa/assets/leaflet/leaflet.draw.js' %}"></script>
+<script src="{% static 'mapa/assets/js/modernizr.js' %}"></script>
+<script src="{% static 'mapa/assets/js/main.js' %}"></script>
+<!-- codigo que utiliza la pagina para todo lo correspondiente al mapa -->
+
+<script src="{% static 'mapa/assets/leaflet/leaflet.markercluster-src.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'mapa/assets/leaflet/instanceLeaflet.js' %}"></script>
+
+
+</script> {% endblock js %}

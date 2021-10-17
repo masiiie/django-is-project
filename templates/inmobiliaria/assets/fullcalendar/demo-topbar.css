@@ -1,0 +1,5 @@
+/* Code tidied up by ScrapBook */
+.demo-topbar { height: 40px; line-height: 40px; padding-left: 1em; background: rgb(238, 238, 238) none repeat scroll 0% 0%; border-bottom: 1px solid rgb(221, 221, 221); font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif !important; font-size: 14px !important; color: rgb(0, 0, 0) !important; }
+.demo-topbar .codepen-button { float: right; margin-top: 7px; margin-right: 7px; }
+.codepen-button { -moz-appearance: none; height: 26px; line-height: 26px; padding: 0px 6px; border: 1px solid rgb(221, 221, 221); background: rgb(255, 255, 255) none repeat scroll 0% 0%; border-radius: 4px; font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif !important; font-size: 11px !important; color: rgb(0, 0, 0) !important; cursor: pointer; }
+.codepen-button::after { content: "↗"; vertical-align: middle; margin: -50% 0px -50% 2px; }

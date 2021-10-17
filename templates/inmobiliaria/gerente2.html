@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Management</title>
+    <script src="js/Chart.bundle.js"></script>
+    <script src="js/utils.js"></script>
+    <style>
+    canvas{
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    .chart-container {
+        width: 80%;
+        margin-left: 40px;
+        margin-right: 40px;
+        margin-bottom: 40px;
+    }
+    .container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    </style>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/lightbox.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link id="css-preset" href="css/presets/preset1.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+  <![endif]-->
+
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+</head>
+<!--/head-->
+
+<body>
+
+    <!--.preloader-->
+    <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
+    <!--/.preloader-->
+
+    <header id="home">
+        <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active" style="background-image: url(images/slider/1.jpg)">
+                    <div class="caption">
+                        <h1 class="animated fadeInLeftBig">gerencia</h1>
+                        <p class="animated fadeInRightBig"></p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/slider/2.jpg)">
+                    <div class="caption">
+                        <h1 class="animated fadeInLeftBig">gerencia</h1>
+                        <p class="animated fadeInRightBig"></p>
+                    </div>
+                </div>
+                <div class="item" style="background-image: url(images/slider/3.jpg)">
+                    <div class="caption">
+                        <h1 class="animated fadeInLeftBig">gerencia</h1>
+                        <p class="animated fadeInRightBig"></p>
+                    </div>
+                </div>
+            </div>
+            <a class="left-control" href="#home-slider" data-slide="prev"><i class="fa fa-angle-left"></i></a>
+            <a class="right-control" href="#home-slider" data-slide="next"><i class="fa fa-angle-right"></i></a>
+
+            <a id="tohash" href="#services"><i class="fa fa-angle-down"></i></a>
+
+        </div>
+        <!--/#home-slider-->
+        <div class="main-nav">
+            <div class="container2">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                    <a class="navbar-brand" href="index.html">
+                        <!-- <h1><img class="img-responsive" src="images/logo.png" alt="logo"></h1> -->
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="scroll active"><a href="#home">Administración</a></li>
+                        <li class="scroll"><a href="#services">Servicios</a></li>
+                        <li class="scroll"><a href="#advanced">Opciones avanzadas</a></li>
+                        <li class="scroll"><a href="#contact">LogIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--/#main-nav-->
+    </header>
+    <!--/#home-->
+
+    <section id="services">
+        <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <h2>Vista general de datos estadísticos</h2>
+            <p>Para información más detallada hacer click en <a href="#advanced"><strong>Vista de administración avanzada</strong></a></p>
+        </div>
+        <div class="container"></div>
+        <script>
+        var randomScalingFactor = function() {return Math.round(Math.random() * 100);};
+        function createConfig(gridlines, title, itype) {
+            return {
+                type: itype,
+                data: {
+                    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+                    datasets: [{
+                        label: "10 de Octubre",
+                        backgroundColor: window.chartColors.red,
+                        borderColor: window.chartColors.red,
+                        data: [
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(),
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor()
+                            ],
+                        fill: false,
+                    }, {
+                        label: "Plaza de la Revolución",
+                        fill: false,
+                        backgroundColor: window.chartColors.blue,
+                        borderColor: window.chartColors.blue,
+                        data: [
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(),
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor()
+                            ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title:{
+                        display: true,
+                        text: title
+                    },
+                    scales: {
+                        xAxes: [{
+                            gridLines: gridlines
+                        }],
+                        yAxes: [{
+                            gridLines: gridlines,
+                            ticks: {
+                                min: 0,
+                                max: 100,
+                                stepSize: 10
+                            }
+                        }]
+                    }
+                }
+            };
+        }
+
+        window.onload = function() {
+            var container = document.querySelector('.container');
+            [
+            {title: 'Cantidad de ventas de inmuebles por municipios', gridLines: {display: true},itype:'bar'},
+            {title: 'Cantidad de usuarios satisfechos', gridLines: {display: true},itype:'line'},
+            {title: 'Ganancias reportadas por municipios', gridLines: {display: false},itype:'radar'},
+            ].forEach(function(details) 
+            {
+                var div = document.createElement('div');
+                div.classList.add('chart-container');
+
+                var canvas = document.createElement('canvas');
+                div.appendChild(canvas);
+                container.appendChild(div);
+
+                var ctx = canvas.getContext('2d');
+                var config = createConfig(details.gridLines, details.title,details.itype);
+                new Chart(ctx, config);
+            });
+        };
+    </script>
+        </div>
+    </section>
+    <!--/#services-->
+
+    
+    <!--/#contact-->
+    <footer id="footer">
+        <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <div class="container text-center">
+
+                <div class="social-icons">
+                    <ul>
+                        <li><a class="envelope" href="#"><i class="fa fa-envelope"></i></a></li>
+                        <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="tumblr" href="#"><i class="fa fa-tumblr-square"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.inview.min.js"></script>
+    <script type="text/javascript" src="js/wow.min.js"></script>
+    <script type="text/javascript" src="js/mousescroll.js"></script>
+    <script type="text/javascript" src="js/smoothscroll.js"></script>
+    <script type="text/javascript" src="js/jquery.countTo.js"></script>
+    <script type="text/javascript" src="js/lightbox.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>

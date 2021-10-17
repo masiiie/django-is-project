@@ -1,0 +1,51 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %}
+<section id="filter">
+</section>
+<section id="blog">
+    <div class="container">
+        <div class="row">
+            <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+                <h1 class="header-line">Bienvenido {{ user }}</h1>
+                <h2>Mostrando solicitudes {{ option }}</h2>
+            </div>
+        </div>
+        <div class="blog-posts">
+            <div class="row">
+                {% for pub in pubs %}
+                <div class="col-sm-4 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="600ms">
+                    <div class="entry-header">
+                        <h2>
+                            <a href="/staff/solicitudes/validate/{{pub.id}}">{{ pub }}</a>
+                        </h2>
+                        <h2>
+                            {{ pub.usuario.first_name}} {{pub.usuario.last_name}}
+                        </h2>
+                        <h4>
+                            Estado: {% if pub.perito %} Asignado a {{pub.perito}} {% else %} Pendiente a asignacion {% endif %}
+                        </h4>
+                        <h6>
+                            Solicitud para {{ pub.venta_o_renta }}
+                        </h6>
+                        <h6>
+                            hecha en {{ pub.tiempo }}
+                        </h6>
+                        <span class="cetagory">en
+                            <strong>{{ pub.municipio }}, {{pub.provincia}}</strong>
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+            <div class="load-more wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
+                <a href="#" class="btn-loadmore">
+                    <i class="fa fa-repeat"></i> Load More</a>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!--/#blog-->
+
+
+{% endblock content %}

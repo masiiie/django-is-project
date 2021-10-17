@@ -1,0 +1,55 @@
+{% extends "inmobiliaria/base_mapa.html" %} {% load bootstrap %} {% block content %}
+<br>
+<br>
+<div class="content-wrapper" style="margin-top: 60px">
+    <div class="container">
+
+        <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">Agregar</h4>
+            </div>
+        </div>
+        <h5><strong>{{message}}</strong></h5>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        Rellene Formulario
+                    </div>
+                    <div class="panel-body ">
+                        <form action="" method="post" class="form" enctype="multipart/form-data">
+                            
+                            {% csrf_token %}
+                            <div class="col-sm-6">
+                                {{ form|bootstrap }} {% if inserting_place%}
+                                <a href="/staff/insert_tag/place">Crear Tag</a> {% endif %}{% if inserting_room%}
+                                <a href="/staff/insert_tag/room">Crear Tag</a> {% endif %} {% if inserting_tag_casa %}
+                                <a href="/staff/insert_place">Crear Inmueble</a> {% endif %} {% if inserting_tag_cuarto %}
+                                <a href="/staff/insert_room">Crear Cuarto</a> {% endif %}
+                                <!-- <div class="form-group" style="text-align: right"> -->
+                                <br>
+                                <br>
+                                <button type="submit" class="btn btn-success">Crear {{ thing }}</button>
+                                <!-- </div> -->
+                            </div>
+                            <div class="col-md-6">
+
+                            </div>
+
+                            {%if solicitude or inserting_place %}
+                            <div class="col-sm-6">
+                                <main role="main" class=" col-lg-12 col-md-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-xs-12" id="mapid" style=" height: 500px; width: 100%"></div>
+                                </main>
+                            </div>
+                            {%endif%}
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

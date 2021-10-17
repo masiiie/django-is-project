@@ -1,0 +1,109 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %} {% load bootstrap %}
+
+<section id="blog">
+    <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <h1> {{ casa }} </h1>
+    </div>
+</section>
+<!--/#blog-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                {% comment %}
+                <h2>Descripción</h2> {% endcomment %} {% comment %}
+                <p> {{ casa.descripcion }} </p> {% endcomment %}
+            </div>
+            <div class="col-xs-6 col-md-4">
+                <h2><strong>Características</strong></h2>
+                <p><strong>Dirección:</strong> calle {{casa.calle_principal}} #{{casa.numero_de_vivienda}} entre {{casa.calle_secundaria}} {% if casa.tiene_calle_secundaria_opcional %} y {{casa.calle_secundaria_opcional}} {% endif %}</p>
+                <p><strong>Cantidad de Pisos:</strong>{{casa.cantidad_de_plantas}}</p>
+                <p><strong>Cantidad de Dormitorios:</strong> {{casa.cantidad_de_cuartos}} </p>
+                <p><strong>Cantidad de Baños:</strong> {{casa.cantidad_de_bannos}}</p>
+                <p><strong>Ubicación:</strong> {{ubicacion}}</p>
+                {% if casa.subastable and casa.venta_o_renta == 'Venta' %}
+                <p><strong>Disponible para subasta</strong></p>{% else %}
+                <p><strong>Disponible para {{casa.venta_o_renta}}</strong></p>
+                {%endif%}
+                <h6><strong>Encargado:</strong> {{casa.perito}}</h6>
+                <h6><strong>Propietario:</strong> {{casa.propietario}}</h6>
+
+                <p class="text-center"><strong>Precio:</strong> {%if casa.venta_o_renta == 'Venta'%}{{casa.precio_de_venta}}{%else%}{{casa.precio_de_alquiler}}{%endif%}</p>
+
+                {% if user.is_authenticated %}
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    <select name="accion">
+                        <option value='none' selected>----------</option>
+                        {%if perms.inmobiliaria.change_lugar %} {% if casa.chequeado == False %}
+                        <option value='validate'>Validar (incluye cuartos)</option>{% endif %} {%if casa.agente.id == user.id %}
+                        <option value='edit'>Editar</option>
+                        <option value='delete'>Eliminar (no retorno)</option>
+                        {%endif%} {%endif%} {%if not perms.inmobiliaria.add_lugar%}{%if casa.subastable and casa.venta_o_renta == 'Venta' %}
+                        <option value='auction'>Participar en subasta</option>{%endif%} {%if not casa.subastable and casa.venta_o_renta == 'Venta'%}
+                        <option value='buy'>Solicitar compra</option>{%endif%} {%if casa.venta_o_renta == 'Renta linear' or casa.venta_o_renta == 'Renta de cuartos'%}
+                        <option value='rent'>Solicitar alquiler</option>{%endif%} {%endif%}
+                    </select>
+                    <div class="form-group" style="text-align: right">
+                        <button type="submit" class="btn btn-success">Ejecutar Acción</button>
+                    </div>
+                </form>
+                {%endif%}
+
+            </div>
+
+            <li>
+                {% for room in rooms %}
+                <div class="col-xs-4 col-md-4 text-center">
+                    <h4>
+                        <a href=""></a>Habitación #{{room.id}}</h4>
+                    <p><strong>Cantidad de camas:</strong> {{room.cantidad_de_camas}}</p>
+                    <p><strong>Baño compartido:</strong> {{room.banno_compartido}}</p>
+                </div>
+                {% endfor %}
+            </li>
+            {%if perms.inmobiliaria.add_cuarto%}
+            <p>
+                <a href="/staff/insert_room/{{casa.id}}"> Añadir Cuarto</a>
+            </p>
+            {%endif%}
+            <div class="col-xs-12 col-md-8 text-rigth">
+                <div class="col-lg-12 col-md-12 col-xs-12" id="mapid" style=" height: 350px; width: 100%"></div>
+
+            </div>
+        </div>
+        <br>
+        
+        <div class="row">
+            
+            <div class="col-md-4 col-sm-12">
+                <div class="thumbnail">
+                <a href="/media/{{ casa.foto1 }}">
+                                <img src="/media/{{ casa.foto1 }}"  width="304" height="200" style="height: 200px">
+                                </a>               
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="thumbnail">
+                <a href="/media/{{ casa.foto2 }}">
+                         <img src="/media/{{ casa.foto2 }}"   width="304" height="200" style="height: 200px"> 
+                            </a>                
+                </div>
+            </div>
+          
+            <div class="col-md-4 col-sm-12">
+                <div class="thumbnail">
+                <a href="/media/{{ casa.foto3 }}">
+                         <img src="/media/{{ casa.foto3 }}"   width="304" height="200" style="height: 200px"> 
+                            </a>                
+                </div>
+            </div>
+        </div>
+        {% if casa.subastable and casa.venta_o_renta == 'Venta' %}
+            <div id="auctionDiv">
+                <auction id={{casa.id}}></auction>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock content %}

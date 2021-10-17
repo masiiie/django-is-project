@@ -1,0 +1,88 @@
+{% extends "inmobiliaria/base2.html" %} {% load staticfiles %} {% block content %}
+
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">Bienvenido {{ agente }}</h4>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- Advanced Tables -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Listado de publicaciones pendientes
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-12" style="text-align:center">
+                                <a class="btn btn-info" href="{% url 'trabajador_nuevo' %}">Añadir nuevo trabajador</a>
+                            </div>
+                            <form role="form">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Mes</label>
+                                        <select class="form-control">
+                                            <option>Enero</option>
+                                            <option>Febrero</option>
+                                            <option>Marzo</option>
+                                            <option>Abril</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Año</label>
+                                        <select class="form-control">
+                                            <option>2015</option>
+                                            <option>2016</option>
+                                            <option>2017</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre y Apellidos</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for trabajador in trabajadores %}
+                                    <tr class="odd gradeA">
+                                        <td>
+                                            <a href="{% url 'id_trabajador' trabajador.id %}"><img height="100px" width="100px" src="/media/{{ trabajador.foto }}"> {{ trabajador.nombre }}</a>
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--End Advanced Tables -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}

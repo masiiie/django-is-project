@@ -1,0 +1,50 @@
+{% extends "inmobiliaria/base2.html" %} {% block content %} {% load bootstrap %}
+
+<section id="blog">
+    <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+        <h1> {{ sol }} -- {{sol.usuario}} </h1>
+        <p>enviada el {{sol.tiempo}}</p>
+    </div>
+
+</section>
+<!--/#blog-->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-xs-6 col-md-4">
+                <p><strong>Dirección:</strong> {{sol.calle_principal}} {{sol.numero_de_vivienda}} {{sol.calle_secundaria}} {% if sol.tiene_calle_secundaria_opcional %} {{sol.calle_secundaria_opcional}} {% endif %}</p>
+
+                <h6><strong>Usuario:</strong>{{sol.usuario.first_name}} {{sol.usuario.last_name}}</h6>
+                <p><strong>email:</strong> {{sol.usuario.email}} </p>
+                <form action="" method="post" class="form">
+                    {% if sol.perito %}
+                    <p><strong>Perito asignado: {{sol.perito}}</strong></p>
+                    {% else %}
+                    <p>Seleccione perito:</p>
+                    <select name="peritos">
+                        <option value='none' selected>----------</option>
+                        {% for perito in peritos%}
+                            <option value='{{perito.id}}'> {{perito}} </option>
+                        {%endfor%}
+                </select> {% endif %}
+                    <p class="text-center"><strong>Solicitando {{sol.venta_o_renta}}</strong></p>
+                    {% csrf_token %}
+                    <select name="accion">
+                        <option value='none' selected>----------</option>
+                        {% if perms.inmobiliaria.change_lugar and not sol.perito %} <option value='assign'>Asignar Perito</option> {% endif %}
+                        {% if sol.perito.id == user.id %} <option value='validate'>Validar</option> {% endif %}
+                        {% if perms.auth.add_user %}<option value='delete'>Eliminar (no retorno)</option>{% endif %}
+                    </select>
+
+                    <div class="form-group" style="text-align: right">
+                        <button type="submit" class="btn btn-success">Ejecutar Acción</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
